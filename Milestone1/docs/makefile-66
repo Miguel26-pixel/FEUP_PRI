@@ -2,7 +2,7 @@ all: database
 
 database: analyze
 	./.venv/bin/python3 database.py
-	sqlite3 database.db .dump | gzip -c > database.dump.gz
+	sqlite3 spotify.db
 
 analyze: process
 	./.venv/bin/python3 graphs.py
@@ -21,7 +21,7 @@ clean_all: clean
 
 clean:
 	rm -rf __pycache__
-	rm -f final_ds2*.csv database.dump.gz database.db
+	rm -f final_ds2*.csv spotify.db
 
 .PHONY: clean clean_all analyze process install database 
 
