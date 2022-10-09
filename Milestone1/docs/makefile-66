@@ -5,7 +5,7 @@ database: analyze
 	sqlite3 database.db .dump | gzip -c > database.dump.gz
 
 analyze: process
-	./.venv/bin/python3 plot.py
+	./.venv/bin/python3 graphs.py
 
 process: requirements.txt 
 	virtualenv .venv
@@ -21,7 +21,7 @@ clean_all: clean
 
 clean:
 	rm -rf __pycache__
-	rm -f final_ds2_*.csv *.png database.dump.gz database.db
+	rm -f final_ds2_*.csv database.dump.gz database.db
 
 .PHONY: clean clean_all analyze process install database 
 
