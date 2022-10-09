@@ -21,7 +21,7 @@ clean_all: clean
 
 clean:
 	rm -rf __pycache__
-	rm -f final_ds2*.csv spotify.db
+	rm -f final_ds2.csv spotify.db
 
 .PHONY: clean clean_all analyze process install database 
 
