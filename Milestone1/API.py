@@ -12,8 +12,8 @@ while True:
     except OverflowError:
         maxInt = int(maxInt/10)
 
-sourceDbPath = 'C:\\Users\\edgar\\Desktop\\pri\\ds2.csv'
-targetDbPath = 'C:\\Users\\edgar\\Desktop\\pri\\final_ds2.csv'
+sourceDbPath = 'ds2.csv'
+targetDbPath = 'final_ds2.csv'
 authToken = 'BQCXGZmk5zPiT2FrbZ6MBFvAJL6OmTQUSrBIiJUf8QY2GgH15ybkvQUmk8hJvrO-jh3FobC_4hJyx0Si9pGc81wVhgFHbTh8FX0h_aQVzRnveskXfNiv_K4Ts3LPvhB6JUeq3a-lsynBrOppTbNaXaZwocnVcUSCMXsBsoxN6gIFSzLnGb_zJOBT9f4YqdV9bck'
 headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken}
 

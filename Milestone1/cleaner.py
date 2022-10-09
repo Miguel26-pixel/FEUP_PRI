@@ -1,5 +1,5 @@
 import pandas as pd
-from random import random, seed
+from random import rd, seed
 
 # set random seed
 seed(42)
