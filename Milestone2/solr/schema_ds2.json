@@ -1,7 +1,7 @@
 {
 	"add-field-type": [
         {
-            "name":"courseTitle",
+            "name":"textType",
             "class":"solr.TextField",
             "indexAnalyzer":{
                 "tokenizer":{
@@ -9,7 +9,8 @@
                 },
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.LowerCaseFilterFactory"}
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.ClassicFilterFactory"}
                 ]
             },
             "queryAnalyzer":{
@@ -18,16 +19,101 @@
                 },
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.LowerCaseFilterFactory"}
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.ClassicFilterFactory"}
                 ]
             }
+        },
+        {
+            "name":"artistType",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.BeiderMorseFilterFactory", "nameType":"GENERIC", "ruleType":"APPROX" , "concat": "true", "languageSet":"auto"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.BeiderMorseFilterFactory", "nameType":"GENERIC", "ruleType":"APPROX" , "concat": "true", "languageSet":"auto"}
+                ]
+            }
+        },
+        {
+            "name":"integerType",
+            "class":"solr.IntPointField",
+            "docValues": true
+        },
+        {
+            "name":"boolType",
+            "class":"solr.BoolField"
         }
     ],
     "add-field": [
         {
             "name": "title",
-            "type": "courseTitle",
+            "type": "textType",
             "indexed": true
-        }
+        },
+        {
+            "name": "tag",
+            "type": "textType",
+            "indexed": true
+        },
+        {
+            "name": "artist",
+            "type": "artistType",
+            "indexed": true
+        },
+        {
+            "name": "lyrics",
+            "type": "textType",
+            "indexed": true
+        },
+        {
+            "name": "track_number",
+            "type": "integerType",
+            "indexed": true
+        },
+        {
+            "name": "popularity",
+            "type": "integerType",
+            "indexed": true
+        },
+        {
+            "name": "explicit",
+            "type": "boolType",
+            "indexed": true
+        },
+        {
+            "name": "duration_ms",
+            "type": "integerType",
+            "indexed": true
+        },
+        {
+            "name": "album_release_date",
+            "type": "integerType",
+            "indexed": true
+        },
+        {
+            "name": "album_total_tracks",
+            "type": "integerType",
+            "indexed": true
+        },
+        {
+            "name": "album_name",
+            "type": "textType",
+            "indexed": true
+        }     
     ]
 }
