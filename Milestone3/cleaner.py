@@ -1,6 +1,6 @@
 import pandas as pd
 
-from textblob import TextBlob
+# from textblob import TextBlob
 
 from spacy.language import Language
 from spacy_langdetect import LanguageDetector
@@ -23,35 +23,34 @@ nlp.add_pipe('language_detector', last=True)
 #data = pd.read_csv('ds2.csv', skiprows = lambda x: rd.random() > 0.01 and x > 0, header = 0, index_col = 0)
 data = pd.read_csv('final_ds2.csv', header = 0, index_col=0)
 
-languages = []
-
-for index, row in data.iterrows():
+for i, row in data.iterrows():
     # b = TextBlob(row.lyrics)
     # b.detect_language()
-    # print(index, b.detect_language())
+    # print(i, b.detect_language())
     # languages.append(b.detect_language())
+    if i % 1000 == 0:
+        print(i)
     
-    doc = nlp(row.lyrics) #3
-    detect_language = doc._.language #4
-    languages.append(detect_language['language'])
-
-print(languages.count('en'))
-print(len(languages))
+    doc = nlp(row.lyrics) 
+    detect_language = doc._.language['language']
+    if detect_language != 'en':
+        if i < len(data.index):
+            data = data.drop(data.index[i])
 
 
 # print("\nRead file\n")
 
-data.pop('id')
+#data.pop('id')
 # print("\nDeleted id\n")
 
-data.pop('views')
+#data.pop('views')
 # print("\nDeleted views\n")
 
-data.pop('features')
+#data.pop('features')
 # print("\nDeleted features\n")
 
 #print("\nDeleted columns\n")
 
-#data.to_csv('ds2litecleaned.csv')
+data.to_csv('final_ds2_eng.csv')
 
 #print("\nWrote file\n")
