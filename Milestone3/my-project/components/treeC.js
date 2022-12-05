@@ -6,7 +6,7 @@ import { treeWrapper } from '../variants.ts';
 const TreeC = () => {
     return (
         <motion.div variants={treeWrapper} initial="initial" animate="animate" className="bottleWrapper">
-            <Image src={img} style={{marginLeft:"20%", marginTop:"2%"}}/>
+            <Image src={img} style={{marginTop: "-1%", marginLeft: "-2%",}}/>
         </motion.div>
     );
 };

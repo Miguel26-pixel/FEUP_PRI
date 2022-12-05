@@ -29,7 +29,6 @@ function MainPageContent() {
             <main>
                 <TreeC />
                 <TextC />
-                <LeavesC />
             </main>
 
             

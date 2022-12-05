@@ -58,6 +58,9 @@
     .textContainer-middle {
         @apply grid flex-1 place-items-center;
         z-index: 100;
+        color: white;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #000;
     }
     .textContainer-middle > span {
         @apply text-5xl font-black tracking-wider md:text-9xl;

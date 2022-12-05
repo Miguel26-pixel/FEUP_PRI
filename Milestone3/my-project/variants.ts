@@ -46,13 +46,7 @@ export const staggerContainer: Variants = {
 
 export const treeWrapper: Variants = {
     initial: {
-        y: -1000,
-    },
-    animate: {
-        y: 0,
-        transition: {
-            type: "spring",
-        },
+        y: -150,
     },
 };
 
