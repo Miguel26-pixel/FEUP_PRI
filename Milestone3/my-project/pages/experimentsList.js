@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { fetcher } from './api/fetcher';
 import Header from '../components/navbar';
 import {FormControl, InputLabel, Input, FormHelperText} from '@mui/material';
+import SearchAplication from '../components/SearchAplication';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -112,7 +113,7 @@ function ExperimentListPage() {
             </Stack>
 
             <Grid container spacing={2} marginTop>
-                {experiments}
+                <SearchAplication />
             </Grid>
         </Container>
     </>
