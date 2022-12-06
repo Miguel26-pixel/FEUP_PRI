@@ -1,7 +1,7 @@
 {
 	"add-field-type": [
         {
-            "name":"textType",
+            "name":"titleType",
             "class":"solr.TextField",
             "indexAnalyzer":{
                 "tokenizer":{
@@ -10,7 +10,10 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-                    {"class":"solr.ClassicFilterFactory"}
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.NGramFilterFactory"}
+
                 ]
             },
             "queryAnalyzer":{
@@ -20,7 +23,39 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-                    {"class":"solr.ClassicFilterFactory"}
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.NGramFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"textType",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.DoubleMetaphoneFilterFactory"},
+                    {"class":"solr.KStemFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.DoubleMetaphoneFilterFactory"},
+                    {"class":"solr.KStemFilterFactory"}
                 ]
             }
         },
@@ -35,6 +70,7 @@
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.BeiderMorseFilterFactory", "nameType":"GENERIC", "ruleType":"APPROX" , "concat": "true", "languageSet":"auto"}
                 ]
             },
@@ -44,6 +80,8 @@
                 },
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.BeiderMorseFilterFactory", "nameType":"GENERIC", "ruleType":"APPROX" , "concat": "true", "languageSet":"auto"}
                 ]
@@ -67,7 +105,7 @@
     "add-field": [
         {
             "name": "title",
-            "type": "textType",
+            "type": "titleType",
             "indexed": true
         },
         {
