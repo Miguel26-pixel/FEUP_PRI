@@ -57,7 +57,7 @@
                     {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
                     {"class":"solr.KStemFilterFactory"},
-                    {"class":"solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "ignoreCase": "true"},
+                    {"class":"solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "ignoreCase": "true"}
                 ]
             }
         },
