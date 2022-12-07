@@ -12,7 +12,7 @@
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
-                    {"class":"solr.NGramFilterFactory"}
+                    {"class":"solr.NGramFilterFactory", "minGramSize":"3", "maxGramSize":"6"}
 
                 ]
             },
@@ -25,7 +25,7 @@
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
-                    {"class":"solr.NGramFilterFactory"}
+                    {"class":"solr.NGramFilterFactory", "minGramSize":"3", "maxGramSize":"6"}
                 ]
             }
         },
@@ -41,8 +41,10 @@
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
-                    {"class":"solr.DoubleMetaphoneFilterFactory"},
-                    {"class":"solr.KStemFilterFactory"}
+                    {"class":"solr.KStemFilterFactory"},
+                    {"class":"solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "ignoreCase": "true"},
+                    {"class":"solr.FlattenGraphFilterFactory"}
+
                 ]
             },
             "queryAnalyzer":{
@@ -54,8 +56,8 @@
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.EnglishPossessiveFilterFactory"},
-                    {"class":"solr.DoubleMetaphoneFilterFactory"},
-                    {"class":"solr.KStemFilterFactory"}
+                    {"class":"solr.KStemFilterFactory"},
+                    {"class":"solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "ignoreCase": "true"},
                 ]
             }
         },
@@ -155,7 +157,7 @@
         },
         {
             "name": "album_name",
-            "type": "textType",
+            "type": "titleType",
             "indexed": true
         }     
     ]
