@@ -13,7 +13,7 @@ const TextC = () => {
             </motion.div>
 
             <div className="textContainer-bottom">
-                <motion.button variants={fadeInUp} onClick={() => router.push('/experimentsList')}>Go to search</motion.button>
+                <motion.button variants={fadeInUp} onClick={() => router.push('/search')}>Go to search</motion.button>
                 <motion.p variants={fadeInUp}>
                     A new way to search the <span> musics </span> <br /> you really wanna hear!
                 </motion.p>

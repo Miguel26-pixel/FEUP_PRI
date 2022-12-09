@@ -1,7 +1,7 @@
 import React, { Component, useState, setState } from "react";
 //import Collapse from "react-bootstrap/Collapse";
 import { FaSearch } from "react-icons/fa";
-import Search from "./Search";
+import Search from "./Filter";
 
 
 class SearchAplication extends Component {

@@ -1,11 +1,10 @@
-import * as React from 'react';
+import * as React from "react";
 import Head from 'next/head';
 
 export default function Layout({children}) {
     return (
         <><Head>
             <title>SPOTYFIND</title>
-            <link rel="icon" type="image/x-icon" href="/plant.ico"></link>
         </Head>
         <div>
             {children}

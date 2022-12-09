@@ -14,7 +14,7 @@
     /* header */
     .header {
         @apply h-[10vh] flex items-center px-10 py-4 md:px-20 text-lg;
-        background-color: rgba(255,255,255, 0.7);
+        background-color: rgba(255,255,255, 1.0);
         width : 90%;
         margin-left:5%;
     
