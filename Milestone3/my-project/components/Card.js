@@ -15,7 +15,7 @@ export default function Card(props) {
         <div className="card-body">
             <h5 className="card-title">Artist: {musicData.artist}</h5>
             <p className="card-text">Album: {musicData.album_name}</p>
-            <a href="#" className="btn btn-primary" style={{float: "inline-end"}}>See lyrics</a>
+            <a href={"/music/" + musicData.id} className="btn btn-primary" style={{float: "inline-end"}}>See lyrics</a>
         </div>
         </div>
     )

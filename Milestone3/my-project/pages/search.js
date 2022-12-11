@@ -5,16 +5,9 @@ import img from '../public/bg-image.png';
 import Image from 'next/image';
 import Header from '../components/navbar';
 import Card from '../components/Card';
-import data from "./MockData.json";
-import axios from 'axios';
-
-const api = axios.create({
-	baseURL: "http://localhost:3001",
-	timeout: 2000,
-  });
+import api from './api/api';
 
 function SearchPage() {
-    const router = useRouter();
     const [musics, setMusics] = useState([]);
     const [query, setQuery] = useState("love");
 
@@ -26,7 +19,6 @@ function SearchPage() {
           headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       }});
-        console.log(results);
         setMusics(results.data.docs);
     };
 

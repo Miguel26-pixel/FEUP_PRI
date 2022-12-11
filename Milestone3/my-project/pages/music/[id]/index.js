@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-
+import img from '../../../public/bg-image.png';
+import Image from 'next/image';
+import Header from '../../../components/navbar';
+import api from '../../api/api';
 
 export default function Music() {
     const router = useRouter();
@@ -8,7 +11,7 @@ export default function Music() {
     const { id } = router.query;
 
     async function getMusic(id) {
-        const results = await api.get("/music/"+id, {
+        const results = await api.get("/music/:"+id, {
           params: {
             q: id,
           }}, {
@@ -16,7 +19,7 @@ export default function Music() {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }});
           console.log(results);
-          setMusicData(results.data.docs);
+          setMusicData(results.data.docs[0]);
       };
 
     useEffect(() => {
@@ -24,7 +27,9 @@ export default function Music() {
     }, [id])
 
     return (
-        <><div className="card" style={{ height: "10%", width: "30%", marginTop: "2%", marginLeft: "35%", }}>
+        <><Image src={img} style={{marginTop: "-1%", marginLeft: "-2%", opacity: "0.6",zIndex: "-10", position: "absolute", float: 'inline-start'}} />        
+        <Header></Header>
+        {musicData != undefined && <><div className="card" style={{ height: "10%", width: "30%", marginTop: "2%", marginLeft: "35%", }}>
             <div className="card-header">
                 {musicData.title}
             </div>
@@ -32,15 +37,14 @@ export default function Music() {
                 <h5 className="card-title">Artist: {musicData.artist}</h5>
                 <p className="card-text">Album: {musicData.album_name}</p>
             </div>
-        </div>
-        <div className="card" style={{ height: "10%", width: "30%", marginTop: "2%", marginLeft: "35%", }}>
+        </div><div className="card" style={{ height: "10%", width: "30%", marginTop: "2%", marginLeft: "35%", }}>
                 <div className="card-header">
                     Lyrics
                 </div>
                 <div className="card-body">
                     {musicData.lyrics}
                 </div>
-            </div></>
+            </div></>}</>
     )
 }
 

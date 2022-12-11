@@ -1,7 +1,7 @@
 {
 	"add-field-type": [
         {
-            "name":"textType",
+            "name":"titleType",
             "class":"solr.TextField",
             "indexAnalyzer":{
                 "tokenizer":{
@@ -10,7 +10,10 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-                    {"class":"solr.ClassicFilterFactory"}
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.NGramFilterFactory", "minGramSize":"3", "maxGramSize":"6"}
+
                 ]
             },
             "queryAnalyzer":{
@@ -20,7 +23,41 @@
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
-                    {"class":"solr.ClassicFilterFactory"}
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.NGramFilterFactory", "minGramSize":"3", "maxGramSize":"6"}
+                ]
+            }
+        },
+        {
+            "name":"textType",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.KStemFilterFactory"},
+                    {"class":"solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "ignoreCase": "true"},
+                    {"class":"solr.FlattenGraphFilterFactory"}
+
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
+                    {"class":"solr.EnglishPossessiveFilterFactory"},
+                    {"class":"solr.KStemFilterFactory"},
+                    {"class":"solr.SynonymGraphFilterFactory", "synonyms": "synonyms.txt", "ignoreCase": "true"}
                 ]
             }
         },
@@ -35,6 +72,7 @@
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.BeiderMorseFilterFactory", "nameType":"GENERIC", "ruleType":"APPROX" , "concat": "true", "languageSet":"auto"}
                 ]
             },
@@ -44,6 +82,8 @@
                 },
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.EnglishMinimalStemFilterFactory"},
                     {"class":"solr.LowerCaseFilterFactory"},
                     {"class":"solr.BeiderMorseFilterFactory", "nameType":"GENERIC", "ruleType":"APPROX" , "concat": "true", "languageSet":"auto"}
                 ]
@@ -55,6 +95,11 @@
             "docValues": true
         },
         {
+            "name":"floatType",
+            "class":"solr.FloatPointField",
+            "docValues": true
+        },
+        {
             "name":"boolType",
             "class":"solr.BoolField"
         }
@@ -62,7 +107,7 @@
     "add-field": [
         {
             "name": "title",
-            "type": "textType",
+            "type": "titleType",
             "indexed": true
         },
         {
@@ -87,7 +132,7 @@
         },
         {
             "name": "popularity",
-            "type": "integerType",
+            "type": "floatType",
             "indexed": true
         },
         {
@@ -112,7 +157,7 @@
         },
         {
             "name": "album_name",
-            "type": "textType",
+            "type": "titleType",
             "indexed": true
         }     
     ]
