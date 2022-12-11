@@ -1,8 +1,6 @@
 import {motion} from 'framer-motion';
 import { fadeInDown } from '../variants.ts';
 import { useRouter } from 'next/router';
-import img from '../public/print.png';
-import Image from 'next/image';
 
 
 const Header = () => {

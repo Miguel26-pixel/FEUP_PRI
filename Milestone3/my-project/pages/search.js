@@ -6,17 +6,39 @@ import Image from 'next/image';
 import Header from '../components/navbar';
 import Card from '../components/Card';
 import data from "./MockData.json";
+import axios from 'axios';
+
+const api = axios.create({
+	baseURL: "http://localhost:3001",
+	timeout: 2000,
+  });
 
 function SearchPage() {
     const router = useRouter();
-    const [musics, setMusics] = useState(data);
+    const [musics, setMusics] = useState([]);
+    const [query, setQuery] = useState("love");
 
-    const getMusics = () => {};
+    async function getMusics(query) {
+      const results = await api.get("/search", {
+        params: {
+          q: query,
+        }}, {
+          headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      }});
+        console.log(results);
+        setMusics(results.data.docs);
+    };
+
+    const handleChange = (e) => {
+      const val = e.target.value;
+      setQuery(val);
+    }
 
 
     useEffect(() => {
-        getMusics();
-    }, [])
+        getMusics(query);
+    }, [query])
 
     const stickyHeader = useRef()
     useLayoutEffect(() => {
@@ -37,10 +59,11 @@ function SearchPage() {
         <Image src={img} style={{marginTop: "-1%", marginLeft: "-2%", opacity: "0.6",zIndex: "-10", position: "absolute", float: 'inline-start'}} />        
         <Header></Header>
         <div className="form-outline" id="search-div" ref={stickyHeader} style={{zIndex: "100", width: "30%", marginTop: "5%",marginLeft: "35%",}} >
-            <input type="search" id="form1" className="form-control" placeholder="Type query" aria-label="Search" />
+            <input type="search" id="form1" className="form-control" placeholder="Type query" aria-label="Search" onChange={handleChange}/>
         </div>
-        {musics.map((item) => (
-                <Card MusicData={item} key={item.title + item.artist} />
+        {/* {console.log(musics)} */}
+        {musics && musics.map((item) => (
+                <Card MusicData={item} key={item.id} />
             ))}
     </>
     );
