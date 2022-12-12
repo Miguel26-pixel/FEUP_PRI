@@ -158,14 +158,6 @@ ul li {
 
 }
 
-
-.search-container { 
-  overflow-y: scroll;
-  flex-wrap: wrap;
-  display: "flex";
-  flex-direction: "column";
-}
-
-.search-bar1 {
-  position: sticky;
+.sticky {
+  position: fixed;
 }
