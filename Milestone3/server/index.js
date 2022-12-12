@@ -23,11 +23,11 @@ app.get("/search", async (req, res) => {
     const query = req.query.q;
     // const page = req.query.page;
     const params ={
-        q: query,
+        q: "("+query+")",
         'q.OP': "AND",
         sort: 'popularity desc',
         defType: 'edismax',
-        qf: 'artist title album_name',
+        qf: 'artist^3 title^3 album_name',
         indent: "true",
         rows: "20"
     }
