@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import axios from "axios"
+import { title } from "process"
 
 const BASE_URL = "http://localhost:8983/solr/test_core/select?"
 
@@ -29,6 +30,8 @@ app.get("/search", async (req, res) => {
         defType: 'edismax',
         qf: 'artist^3 title^3 album_name',
         indent: "true",
+        hl: "true",
+        'hl.fl': 'title artist',
         rows: "20"
     }
     const results = await searchExpresSolr(params);
@@ -44,7 +47,7 @@ app.get("/music/:id", async (req, res) => {
         'q.OP': "AND",
         defType: 'edismax',
         qf: 'id',
-        indent: "true"
+        indent: "true",
     }
     const results = await searchExpresSolr(params);
     res.send(results);
