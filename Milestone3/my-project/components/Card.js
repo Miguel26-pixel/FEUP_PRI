@@ -8,7 +8,7 @@ Card.propTypes = {
 export default function Card(props) {
     const musicData = props.MusicData;
     return (
-        <div className="card" style={{height: "10%", width: "25%", marginTop: "2%",marginLeft: "35%", display: "flex", flexDirection: "row"}}>
+        <div className="card" style={{height: "10%", width: "30%", marginTop: "2%",marginLeft: "35%",}}>
         <div className="card-header">
             {musicData.title} 
         </div>

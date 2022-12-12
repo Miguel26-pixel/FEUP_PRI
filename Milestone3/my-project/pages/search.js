@@ -35,14 +35,12 @@ function SearchPage() {
     return (<>
         <Image src={img} style={{marginTop: "-1%", marginLeft: "-2%", opacity: "0.6",zIndex: "-10", position: "absolute", float: 'inline-start'}} />        
         <Header></Header>
-        <div className='search-container'>
-          <div className='search-bar1 form-outline' id="search-div" style={{zIndex: "100", width: "30%", marginTop: "5%",marginLeft: "35%",}} >
-              <input type="search" id="form1" className="form-control" placeholder="Search for your favourite" aria-label="Search" onChange={handleChange}/>
+          <div className='sticky' style={{zIndex: "100", width: "30%", marginTop: "5%",marginLeft: "35%",}} >
+              <input type="search" className="form-control" placeholder="Search for your favourite" aria-label="Search" onChange={handleChange}/>
           </div>
           {musics && musics.map((item) => (
                   <Card MusicData={item} key={item.id} />
               ))}
-        </div>
     </>
     );
 }
